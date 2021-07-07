@@ -1,6 +1,6 @@
-import React from "react";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import { Layout } from "antd";
+import FooterCustom from "../FooterCustom/FooterCustom";
+import HeaderCustom from "../HeaderCustom/HeaderCustom";
 
 export interface IPageProps {
   children: any;
@@ -8,11 +8,11 @@ export interface IPageProps {
 
 function Page({ children }: IPageProps) {
   return (
-    <>
-      <Header />
+    <Layout className="layout">
+      <HeaderCustom />
       {children}
-      <Footer />
-    </>
+      <FooterCustom />
+    </Layout>
   );
 }
 
