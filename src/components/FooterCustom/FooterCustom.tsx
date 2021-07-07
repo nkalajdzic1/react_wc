@@ -28,7 +28,6 @@ function FooterCustom() {
               {" "}
               Nadir Kalajdžić{" "}
             </a>
-            . All rights reserved
           </li>
         </ul>
       </div>
