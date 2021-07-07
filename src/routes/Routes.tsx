@@ -19,7 +19,7 @@ function Routes() {
           exact
           path="/article"
           component={ArticlePage}
-          title="Home"
+          title="Article"
         />
       </Switch>
     </Router>

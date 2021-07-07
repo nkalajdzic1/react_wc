@@ -11,7 +11,7 @@ interface ICustomRouteProps {
 }
 
 function CustomRoute({ title, exact, path, component }: ICustomRouteProps) {
-  document.title = `Auction | ${title}`;
+  document.title = `News Portal | ${title}`;
   return <Route>{component}</Route>;
 }
 
