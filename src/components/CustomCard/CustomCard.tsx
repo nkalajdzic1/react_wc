@@ -27,7 +27,7 @@ export default function CustomCard({ headline }: ICustomCardProps) {
             <Typography component="h6" variant="h6" noWrap={true}>
               {headline.title}
             </Typography>
-            <Paragraph ellipsis={{ rows: 4, expandable: false }}>
+            <Paragraph ellipsis={{ rows: 3, expandable: false }}>
               {headline.description}
             </Paragraph>
           </CardContent>

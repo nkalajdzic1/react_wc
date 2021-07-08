@@ -2,12 +2,18 @@ import { Button, Typography } from "@material-ui/core";
 import { Breadcrumb } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import React, { useEffect, useState } from "react";
+import { Combobox } from "evergreen-ui";
 import { getTopHeadlines } from "../../api/TopHeadlines";
 import ArticleList from "../ArticleList/ArticleList";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
+import { useSelector, useDispatch } from "react-redux";
+import { selectTopHeadlines, setTopHeadlines } from "../../store";
+
 import "./LandingPageContent.css";
 import { countries } from "./Countries";
+import { getLocation } from "../../api/GetLocation";
+import CustomDropDown from "../CustomDropDown/CustomDropDown";
 
 export interface IHeadline {
   author: string;
@@ -29,28 +35,29 @@ export interface CountryPair {
 }
 
 function LandingPageContent() {
-  const [headlines, setHeadlines] = useState<IHeadline[]>([]);
-  const [visible, setVisible] = useState(3);
-  const [country, setCountry] = useState<Array<CountryPair>>(countries);
+  const [visible, setVisible] = useState(20);
+  const topHeadlines = useSelector(selectTopHeadlines);
+  const dispatch = useDispatch();
   const [selectedCountry, setSelectedCountry] = useState<CountryPair>({
     code: "us",
     name: "United States",
   });
 
-  console.log(selectedCountry);
-
   useEffect(() => {
+    console.log("selectedCountry");
     getTopHeadlines(selectedCountry.code)
       .then((res) => {
-        if (res.data != null)
-          if (res.data.articles != null) setHeadlines(res.data.articles);
+        if (res.data != null && res.data.articles != null)
+          dispatch(setTopHeadlines(res.data.articles));
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [selectedCountry]);
 
   const loadMore = () => {
-    setVisible((value) => value + 3);
+    setVisible((value) => value + 20);
   };
+
+  const setCountry = (country: CountryPair) => setSelectedCountry(country);
 
   return (
     <Content style={{ padding: "0 50px" }}>
@@ -63,13 +70,19 @@ function LandingPageContent() {
             Top headlines
           </Typography>
         </div>
-        <div></div>
+        <div>
+          <CustomDropDown
+            values={countries}
+            selected={selectedCountry}
+            setCountry={setCountry}
+          />
+        </div>
         <div className="article_list">
-          <ArticleList headlines={headlines.slice(0, visible)} />
+          <ArticleList headlines={topHeadlines.slice(0, visible)} />
         </div>
         <div className="load_more_button">
           <Button
-            hidden={visible >= headlines.length}
+            hidden={visible >= topHeadlines.length}
             onClick={loadMore}
             variant="outlined"
             className="load_btn"
