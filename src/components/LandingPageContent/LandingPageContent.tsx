@@ -16,10 +16,8 @@ import CustomDropDown from "../CustomDropDown/CustomDropDown";
 import {
   toastError,
   toastRegular,
-  toastRegularBlack,
   toastSucces,
 } from "../CustomToast/CustomToast";
-import { toast } from "react-toastify";
 
 export interface IHeadline {
   author: string;
@@ -58,7 +56,7 @@ function LandingPageContent() {
           toastSucces(`Found articles for your location in ${location.name}`);
         } else {
           toastRegular(
-            `Could not find any articles for your location in ${res.data.country_name}. Loaded articles for United States`
+            `Could not find any articles for your location in ${res.data.country_name}. Loaded articles for the United States.`
           );
         }
       })
@@ -95,7 +93,8 @@ function LandingPageContent() {
             Top headlines
           </Typography>
         </div>
-        <div>
+        <div className="dropdown_country">
+          <Typography style={{ width: 150 }}>Select country: </Typography>
           <CustomDropDown
             values={countries}
             selected={selectedCountry}

@@ -5,9 +5,7 @@ export interface IToastCustom {
 }
 
 export function toastRegular(content: string) {
-  return toast(content, {
-    closeButton: false,
-  });
+  return toast(content);
 }
 
 export function toastRegularBlack(content: string) {

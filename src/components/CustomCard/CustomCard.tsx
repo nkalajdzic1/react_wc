@@ -33,7 +33,9 @@ export default function CustomCard({ headline }: ICustomCardProps) {
             </Paragraph>
           </CardContent>
           <div className="card_controls">
-            <Button className="card_button">Read full article</Button>
+            <Button className="card_button" variant="outlined">
+              Read full article
+            </Button>
           </div>
         </div>
       </Card>

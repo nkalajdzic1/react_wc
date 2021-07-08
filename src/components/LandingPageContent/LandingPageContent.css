@@ -7,5 +7,19 @@
   margin: 0 auto;
 }
 
-.site-layout-content {
+.dropdown_country {
+  padding: 10px;
+}
+
+@media only screen and (min-width: 550px) {
+  .dropdown_country {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .dropdown_country {
+    display: flex;
+    flex-direction: column;
+  }
 }
