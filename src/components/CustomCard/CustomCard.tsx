@@ -21,7 +21,7 @@ export default function CustomCard({ headline }: ICustomCardProps) {
     <div className="single_card">
       <Card className="card_root">
         <Image
-          width={200}
+          className="single_card_image"
           height={200}
           src={headline.urlToImage != null ? headline.urlToImage : "error"}
           style={{ objectFit: "cover" }}

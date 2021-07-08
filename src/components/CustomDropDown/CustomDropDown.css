@@ -1,0 +1,11 @@
+@media only screen and (min-width: 550px) {
+  .custom_dropdown {
+    width: 33%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .custom_dropdown {
+    width: 100%;
+  }
+}

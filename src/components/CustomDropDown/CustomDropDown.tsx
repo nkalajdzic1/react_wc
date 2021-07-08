@@ -2,6 +2,8 @@ import React from "react";
 import { CountryPair } from "../LandingPageContent/LandingPageContent";
 import { Combobox } from "evergreen-ui";
 
+import "./CustomDropDown.css";
+
 export interface ICustomDropDownProps {
   values: CountryPair[];
   selected: CountryPair;
@@ -15,6 +17,7 @@ function CustomDropDown({
 }: ICustomDropDownProps) {
   return (
     <Combobox
+      className="custom_dropdown"
       initialSelectedItem={{ label: selected.name }}
       items={values.map((x) => {
         return { label: x.name };
