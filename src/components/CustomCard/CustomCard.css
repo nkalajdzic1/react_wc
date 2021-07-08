@@ -19,6 +19,11 @@
   .card_button {
     width: max-content;
   }
+
+  .single_card_image {
+    height: 200px;
+    width: 200px;
+  }
 }
 
 .single_card {
@@ -37,10 +42,15 @@
   }
 
   .single_card_image {
-    margin: 0 auto;
+    height: 200px;
+    width: 100%;
   }
 
   .card_button {
+    width: 100%;
+  }
+
+  .ant-image {
     width: 100%;
   }
 }
