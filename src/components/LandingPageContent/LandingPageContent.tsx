@@ -2,7 +2,6 @@ import { Button, Typography } from "@material-ui/core";
 import { Breadcrumb } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import React, { useEffect, useState } from "react";
-import { Combobox } from "evergreen-ui";
 import { getTopHeadlines } from "../../api/TopHeadlines";
 import ArticleList from "../ArticleList/ArticleList";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -14,6 +13,13 @@ import "./LandingPageContent.css";
 import { countries } from "./Countries";
 import { getLocation } from "../../api/GetLocation";
 import CustomDropDown from "../CustomDropDown/CustomDropDown";
+import {
+  toastError,
+  toastRegular,
+  toastRegularBlack,
+  toastSucces,
+} from "../CustomToast/CustomToast";
+import { toast } from "react-toastify";
 
 export interface IHeadline {
   author: string;
@@ -44,14 +50,33 @@ function LandingPageContent() {
   });
 
   useEffect(() => {
-    console.log("selectedCountry");
+    getLocation()
+      .then((res) => {
+        var location = countries.find((x) => x.code === res.data.country_code);
+        if (location != null) {
+          setSelectedCountry(location);
+          toastSucces(`Found articles for your location in ${location.name}`);
+        } else {
+          toastRegular(
+            `Could not find any articles for your location in ${res.data.country_name}. Loaded articles for United States`
+          );
+        }
+      })
+      .catch((err) => {
+        toastError(
+          `Error on loading your location to display articles from your location.`
+        );
+      });
+  }, []);
+
+  useEffect(() => {
     getTopHeadlines(selectedCountry.code)
       .then((res) => {
         if (res.data != null && res.data.articles != null)
           dispatch(setTopHeadlines(res.data.articles));
       })
       .catch((err) => console.log(err));
-  }, [selectedCountry]);
+  }, [dispatch, selectedCountry]);
 
   const loadMore = () => {
     setVisible((value) => value + 20);

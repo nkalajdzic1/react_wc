@@ -25,11 +25,7 @@ function CustomDropDown({
           var selectedCountry = values.find(
             (x) => x.name === selectedValue.label
           );
-          if (
-            selectedCountry != null &&
-            selectedCountry.name !== selectedValue.label
-          )
-            setCountry(selectedCountry);
+          if (selectedCountry != null) setCountry(selectedCountry);
         }
       }}
     />
