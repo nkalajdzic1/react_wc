@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import { Breadcrumb } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import React, { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import ArticleList from "../ArticleList/ArticleList";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "./LandingPageContent.css";
+import { countries } from "./Countries";
 
 export interface IHeadline {
   author: string;
@@ -22,12 +23,24 @@ export interface IHeadline {
   urlToImage: string;
 }
 
+export interface CountryPair {
+  code: string;
+  name: string;
+}
+
 function LandingPageContent() {
   const [headlines, setHeadlines] = useState<IHeadline[]>([]);
   const [visible, setVisible] = useState(3);
+  const [country, setCountry] = useState<Array<CountryPair>>(countries);
+  const [selectedCountry, setSelectedCountry] = useState<CountryPair>({
+    code: "us",
+    name: "United States",
+  });
+
+  console.log(selectedCountry);
 
   useEffect(() => {
-    getTopHeadlines()
+    getTopHeadlines(selectedCountry.code)
       .then((res) => {
         if (res.data != null)
           if (res.data.articles != null) setHeadlines(res.data.articles);
@@ -45,6 +58,12 @@ function LandingPageContent() {
         <Breadcrumb.Item>Home</Breadcrumb.Item>
       </Breadcrumb>
       <div className="site-layout-content">
+        <div>
+          <Typography variant="h5" style={{ margin: "0 auto" }}>
+            Top headlines
+          </Typography>
+        </div>
+        <div></div>
         <div className="article_list">
           <ArticleList headlines={headlines.slice(0, visible)} />
         </div>
