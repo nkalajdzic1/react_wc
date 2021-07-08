@@ -1,7 +1,7 @@
-import { API_KEY } from "../../env";
 import axios from "axios";
 import { Component } from "react";
 
-export default {
-  headhead: () => console.log(111),
-};
+export const getTopHeadlines = () =>
+  axios.get(
+    `${process.env.REACT_APP_API_URL}/top-headlines?country=us&apiKey=${process.env.REACT_APP_API_KEY}`
+  );
