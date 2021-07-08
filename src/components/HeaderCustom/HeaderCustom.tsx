@@ -11,7 +11,7 @@ const { Search } = Input;
 function HeaderCustom() {
   const [isSearching, setIsSearching] = useState(false);
   const history = useHistory();
-  const [selectedItem, setSelectedItem] = useState("1");
+  const [selectedItem, setSelectedItem] = useState("-1");
 
   const onSearch = (seacrhValue: string) => {
     history.push("/search?query=" + seacrhValue);
