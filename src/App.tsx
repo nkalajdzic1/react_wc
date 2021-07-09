@@ -11,8 +11,8 @@ function App() {
 
 const AppWrapper = () => (
   <Provider store={store}>
-    <App></App>
-    <ToastContainer />
+    <App />
+    <ToastContainer draggable={false} />
   </Provider>
 );
 

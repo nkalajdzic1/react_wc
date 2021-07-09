@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import ArticlePageContent from "../../components/ArticlePageContent/ArticlePageContent";
 import Page from "../../components/Page/Page";
 
 function ArticlePage() {
   return (
     <Page>
-      <h1>Article Page</h1>
+      <ArticlePageContent />
     </Page>
   );
 }

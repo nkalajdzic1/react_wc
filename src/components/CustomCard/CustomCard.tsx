@@ -1,22 +1,29 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import "react-toastify/dist/ReactToastify.css";
 import "./CustomCard.css";
 import { Button } from "@material-ui/core";
 import { IHeadline } from "../LandingPageContent/LandingPageContent";
 import Paragraph from "antd/lib/typography/Paragraph";
-import { toast } from "react-toastify";
 import "antd/dist/antd.css";
 import { Image } from "antd";
+import { useHistory } from "react-router-dom";
 
 export interface ICustomCardProps {
   headline: IHeadline;
 }
 
 export default function CustomCard({ headline }: ICustomCardProps) {
+  const history = useHistory();
+
+  const goToArticle = (headline: IHeadline) => {
+    history.push(
+      `/article?author=${headline.author}&content=${headline.content}&description=${headline.description}&publishedAt=${headline.publishedAt}&id=${headline.source.id}&name=${headline.source.id}&title=${headline.title}&url=${headline.url}&urlToImage=${headline.urlToImage}`
+    );
+  };
+
   return (
     <div className="single_card">
       <Card className="card_root">
@@ -38,7 +45,11 @@ export default function CustomCard({ headline }: ICustomCardProps) {
             </Paragraph>
           </CardContent>
           <div className="card_controls">
-            <Button className="card_button" variant="outlined">
+            <Button
+              className="card_button"
+              onClick={() => goToArticle(headline)}
+              variant="outlined"
+            >
               Read full article
             </Button>
           </div>
