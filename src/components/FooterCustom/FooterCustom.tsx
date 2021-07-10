@@ -4,6 +4,7 @@ import { Layout } from "antd";
 import "antd/dist/antd.css";
 
 import "./FooterCustom.css";
+import { Link } from "@material-ui/core";
 
 const { Footer } = Layout;
 
@@ -28,9 +29,12 @@ function FooterCustom() {
             Nadir Kalajdžić{" "}
           </a>
         </div>
-        <div>About us</div>
-        <div>Terms and conditions</div>
-        <div>Privacy podivcy</div>
+        <div>
+          <Link href="/about_us">About us</Link>
+        </div>
+        <div>
+          <Link href="/terms_and_conditions">Terms and conditions</Link>
+        </div>
       </div>
     </Footer>
   );

@@ -1,0 +1,14 @@
+.about_page {
+  margin: 0px 20px;
+  padding: 20px;
+  min-height: 600px;
+  background-color: white;
+}
+
+.about_page_divider {
+  padding-top: 10px;
+}
+
+.about_page_content {
+  padding-top: 10px;
+}

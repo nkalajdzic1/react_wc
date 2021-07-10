@@ -5,11 +5,11 @@ import Typography from "@material-ui/core/Typography";
 import "react-toastify/dist/ReactToastify.css";
 import "./CustomCard.css";
 import { Button } from "@material-ui/core";
-import { IHeadline } from "../LandingPageContent/LandingPageContent";
 import Paragraph from "antd/lib/typography/Paragraph";
 import "antd/dist/antd.css";
 import { Image } from "antd";
 import { useHistory } from "react-router-dom";
+import { IHeadline } from "../../store";
 
 export interface ICustomCardProps {
   headline: IHeadline;

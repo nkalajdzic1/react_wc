@@ -18,6 +18,11 @@ function HeaderCustom() {
     setSelectedItem("-1");
   };
 
+  const routeTo = (page: string) => {
+    history.push(`/${page}`);
+    setSelectedItem("-1");
+  };
+
   return (
     <Header style={{ backgroundColor: blue }}>
       <Search
@@ -38,17 +43,15 @@ function HeaderCustom() {
         defaultSelectedKeys={[selectedItem]}
         selectedKeys={[selectedItem]}
       >
-        <Menu.Item
-          key={1}
-          onClick={() => {
-            history.push("/");
-            setSelectedItem("-1");
-          }}
-        >
+        <Menu.Item key={1} onClick={() => routeTo("landing")}>
           Home
         </Menu.Item>
-        <Menu.Item key={2}>About us</Menu.Item>
-        <Menu.Item key={3}>Terms and conditions</Menu.Item>
+        <Menu.Item key={2} onClick={() => routeTo("about_us")}>
+          About us
+        </Menu.Item>
+        <Menu.Item key={3} onClick={() => routeTo("terms_and_conditions")}>
+          Terms and conditions
+        </Menu.Item>
       </Menu>
     </Header>
   );

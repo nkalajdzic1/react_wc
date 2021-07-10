@@ -1,6 +1,6 @@
 import React from "react";
+import { IHeadline } from "../../store";
 import CustomCard from "../CustomCard/CustomCard";
-import { IHeadline } from "../LandingPageContent/LandingPageContent";
 
 export interface IArticleListProps {
   headlines: IHeadline[];
