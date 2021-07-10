@@ -7,7 +7,7 @@ import ArticleList from "../ArticleList/ArticleList";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectTopHeadlines, setTopHeadlines } from "../../store";
+import { setTopHeadlines } from "../../TopHeadlinesRedux";
 
 import "./LandingPageContent.css";
 import { countries } from "./Countries";
@@ -18,6 +18,7 @@ import {
   toastRegular,
   toastSucces,
 } from "../CustomToast/CustomToast";
+import { selectTopHeadlines } from "../../store";
 
 export interface IHeadline {
   author: string;
@@ -83,8 +84,8 @@ function LandingPageContent() {
   const setCountry = (country: CountryPair) => setSelectedCountry(country);
 
   return (
-    <Content style={{ padding: "0 50px" }}>
-      <Breadcrumb style={{ margin: "16px 0" }}>
+    <Content style={{ padding: "0 20px" }}>
+      <Breadcrumb style={{ margin: "20px 0" }}>
         <Breadcrumb.Item>Home</Breadcrumb.Item>
       </Breadcrumb>
       <div className="site-layout-content">

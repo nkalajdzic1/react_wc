@@ -1,0 +1,23 @@
+.search_page_content {
+  padding: 20px;
+  margin: 0px 20px;
+  min-height: 600px;
+  background-color: white;
+}
+
+.load_more_button {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.load_btn {
+  margin: 0 auto;
+}
+
+.search_page_divider {
+  padding-top: 10px;
+}
+
+.article_list {
+  padding-top: 10px;
+}
