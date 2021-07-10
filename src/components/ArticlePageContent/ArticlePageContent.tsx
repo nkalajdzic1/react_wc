@@ -32,8 +32,6 @@ function ArticlePageContent() {
     return date.toUTCString();
   };
 
-  console.log(headline);
-
   return (
     <>
       <Breadcrumb style={{ margin: "20px" }}>
@@ -70,13 +68,15 @@ function ArticlePageContent() {
           <div className="single_article_details">
             <Typography variant="subtitle2">
               Source:{" "}
-              {headline.source.name !== "null"
+              {headline.source.name !== "null" &&
+              headline.source.name != null &&
+              headline.source != null
                 ? headline.source.name
                 : "No source available"}
             </Typography>
             <Typography variant="subtitle2">
               Author:{" "}
-              {headline.author !== "null"
+              {headline.author !== "null" && headline.source.name != null
                 ? headline.author
                 : "No author available"}
             </Typography>
@@ -86,9 +86,11 @@ function ArticlePageContent() {
                 ? formatDate(headline.publishedAt)
                 : "No publish date available"}
             </Typography>
-            {headline.url !== "null" ? (
+            {headline.url !== "null" &&
+            headline.url != null &&
+            headline.url !== "" ? (
               <Typography variant="subtitle2">
-                More about the Article on the following source:{" "}
+                More about the Article on the following source:
                 <Link href={headline.url}>link</Link>
               </Typography>
             ) : (
@@ -99,10 +101,14 @@ function ArticlePageContent() {
             </div>
             <div className="single_article_full_content">
               <Typography variant="subtitle2" style={{ paddingTop: "10px" }}>
-                {headline.content !== "null"
+                {headline.content !== "null" &&
+                headline.content != null &&
+                headline.content !== ""
                   ? headline.content.replaceAll(/\[\s\d+\schars\]/g, "")
                   : `No content available`}
-                {headline.url !== "null" ? (
+                {headline.url !== "null" &&
+                headline.url != null &&
+                headline.url !== "" ? (
                   <Link href={headline.url}>more on the following link</Link>
                 ) : (
                   ""

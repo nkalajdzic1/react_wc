@@ -12,6 +12,7 @@ import { toastError, toastRegularBlack } from "../CustomToast/CustomToast";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "./SearchPageContent.css";
+import SortDropDown from "../SortDropDown/SortDropDown";
 
 function SearchPageContent() {
   const location = useLocation();
@@ -20,19 +21,20 @@ function SearchPageContent() {
   const searchResults = useSelector(selectSearchResults);
   const dispatch = useDispatch();
   const [numbOfArticles, setNumOfArticles] = useState(0);
+  const [dropdown, setDropdown] = useState<string>("relevancy");
 
   useEffect(() => {
     param != null
-      ? getByQuery(param)
+      ? getByQuery(param, dropdown)
           .then((res) => {
             dispatch(setSearchResults(res.data.articles));
-            setNumOfArticles(res.data.totalResults);
+            setNumOfArticles(res.data.articles.length);
           })
           .catch(() =>
             toastRegularBlack("Could not get articles now. Try again later.")
           )
       : toastError("No results");
-  }, [param]);
+  }, [param, dropdown]);
 
   const loadMore = () => {
     setVisible((value) => value + 20);
@@ -51,6 +53,12 @@ function SearchPageContent() {
           <Typography variant="caption">
             Displaying {numbOfArticles} results for the search "{param}"
           </Typography>
+        </div>
+        <div className="search_page_dropdown">
+          <SortDropDown
+            dropdown={dropdown}
+            setDropdown={setDropdown}
+          ></SortDropDown>
         </div>
         <div className="search_page_divider">
           <Divider />

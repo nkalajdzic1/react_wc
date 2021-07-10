@@ -5,6 +5,10 @@
   background-color: white;
 }
 
+.search_page_dropdown {
+  padding-top: 10px;
+}
+
 .load_more_button {
   text-align: center;
   padding-top: 20px;
